@@ -14,8 +14,8 @@ END:VTIMEZONE
 BEGIN:VEVENT
 CLASS:PUBLIC
 CREATED:20201124T082933Z
-DESCRIPTION:八德彭園會館地圖 <https://g.page/PengYuanBade> \n會館
-	車位有限，建議提早抵達~\n
+DESCRIPTION:八德彭園會館地圖 <https://g.page/PengYuanBade> \n桃園
+	市八德區介壽路一段728號3樓(廣豐新天地內)\n會館車位有限，建議提早抵達~\n
 DTEND;TZID="Taipei Standard Time":20201219T150000
 DTSTAMP:20201124T082933Z
 DTSTART;TZID="Taipei Standard Time":20201219T120000
