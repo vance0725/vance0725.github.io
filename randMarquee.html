@@ -14,6 +14,19 @@
         #preload {
             display: none;
         }
+        .result {
+            width: 100%;
+        }
+        #user-img {
+            width: 30%;
+        }
+        .god {
+            border: 3px solid #CD0505;
+        }
+        .emoji {
+            margin-bottom: 0;
+            font-size: 4rem;
+        }
     </style>
 
 </head>
@@ -24,7 +37,7 @@
 
         <!--  主要內容  -->
         <div class="main-block">
-            
+            <div class="emoji">❤️</div>
             <!--  顯示區塊  -->
             <section class="god">
                 <h1>
@@ -36,7 +49,6 @@
 
             <!--  按鈕  -->
             <section class="btns">
-
                 <!--  start  -->
                 <a class="btn-start" href="#">
                     <span class="line top -h"></span>
@@ -52,11 +64,7 @@
             </section>
 
             <div id="user-template">
-                <!-- <div>
-                    <img>
-                    <p></p>
-                </div> -->
-                <table>
+                <table class="result">
                     <tr>
                         <td rowspan="2" id="user-img"><img></td>
                         <td id="user-name"></td>
