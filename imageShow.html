@@ -47,19 +47,23 @@
   <script type="text/javascript" src="js/jquery.barrager.js"></script>
   <script type="text/javascript" src="js/marquee.js"></script>
   <script type="text/javascript">
-    var count = 1;
+    var count = 0;
+    var showCount = 0;
     var ajaxErrorCount = 0;
     $(function () {
       setImage();
+      setPicDisplay();
       setMarquee();
       console.log("count: " + count);
-      $("#pic-area :nth-child(" + count + ")").fadeIn(1000).removeClass("hidden").css("display", "block");
+      $("#img_" + showCount++).fadeIn(1000).removeClass("hidden").css("display", "block");
       setImage(); // for preload image
 
       setInterval(function () {
-        $("#pic-area :nth-child(" + count + ")").fadeOut(1000).addClass("hidden");
-        $("#pic-area :nth-child(" + ++count + ")").fadeIn(1000).removeClass("hidden").css("display", "block");
-        console.log("count: " + count + ", time: " + Date.now() + ", picUrl: " + $("#pic-area :nth-child(" + count + ")").attr("src"));
+        $("#img_" + showCount).fadeOut(1000).addClass("hidden");
+        console.log("fadeout showCount: "+showCount);
+        $("#img_" + ++showCount).fadeIn(1000).removeClass("hidden").css("display", "block");
+        console.log("fadein showCount: "+showCount);
+        console.log("count: " + count + ", showCount: " + showCount + ", time: " + Date.now() + ", picUrl: " + $("#img_" + showCount).attr("src"));
         setImage(); // for preload image
       }, 7000);
 
@@ -76,17 +80,16 @@
         success: function (response) {
           if (response.length > 0) {
             var obj = JSON.parse(response);
-            $("#pic-area").append("<img src='" + obj.publicUrl + "' class='pic hidden' />");
-
-            if ($(".pic").width > $(".pic").height) {
-              $(".pic").css("width", "100vw").css("height", "auto");
-            } else {
-              $(".pic").css("width", "auto").css("height", "100vh");
-            }
+            $("#pic-area").append("<img src='" + obj.publicUrl + "' id='img_" + ++count + "' class='pic hidden' />");
+            console.log("set img_" + count + ", picUrl: " + obj.publicUrl);
+            setPicDisplay();
           }
         }, error: function() {
           console.log("ajax error! ajaxCount: " + ++ajaxErrorCount);
-          setImage();
+          var randNum = rand(count, 1);
+          $("#pic-area").append("<img src='" + $("#img_" + randNum).attr("src") + "' id='img_" + ++count + "' class='pic hidden' />");
+          console.log("set img_" + count + ", picUrl: " + obj.publicUrl);
+          setPicDisplay();
         }
       });
     }
@@ -105,6 +108,18 @@
           setMarquee();
         }
       });
+    }
+
+    function setPicDisplay() {
+      if ($(".pic").width > $(".pic").height) {
+        $(".pic").css("width", "100vw").css("height", "auto");
+      } else {
+        $(".pic").css("width", "auto").css("height", "100vh");
+      }
+    }
+
+    function rand(max, min) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
     }
   </script>
 </body>
