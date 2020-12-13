@@ -69,9 +69,7 @@ function marquee(img, info) {
 
     var speed = Math.floor(Math.random() * Math.floor(16)) + 10; // 取得10～25之間的值
     var window_height = $(window).height() - 150;
-    console.log("window_height: " + window_height);
     var bottom = Math.floor(Math.random() * window_height + 40); // 隨機高度
-    console.log("bottom: " + bottom);
     var code = barrager_code;
 
     code = code.replace("   bottom:{bottom}, //距离底部高度,单位px,默认随机 \n", '');
@@ -88,7 +86,6 @@ function marquee(img, info) {
     };
 
     code = code.format(item);
-    // console.log(code);
     $('#barrager-code').val(code);
     eval(code);
 }

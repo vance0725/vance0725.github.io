@@ -59,6 +59,7 @@
       setInterval(function () {
         $("#pic-area :nth-child(" + count + ")").fadeOut(1000).addClass("hidden");
         $("#pic-area :nth-child(" + ++count + ")").fadeIn(1000).removeClass("hidden").css("display", "block");
+        console.log("count: " + count + ", time: " + Date.now() + ", picUrl: " + $("#pic-area :nth-child(" + count + ")").attr("src"));
         setImage(); // for preload image
       }, 7000);
 
