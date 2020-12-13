@@ -51,7 +51,7 @@
     var ajaxErrorCount = 0;
     $(function () {
       setImage();
-      // setPicDisplay();
+      setMarquee();
       console.log("count: " + count);
       $("#pic-area :nth-child(" + count + ")").fadeIn(1000).removeClass("hidden").css("display", "block");
       setImage(); // for preload image
@@ -65,16 +65,7 @@
 
       // 處理彈幕
       setInterval(function () {
-        $.ajax({
-          type: "get",
-          url: "https://www.vance-susan.life/getMarquee",
-          success: function (response) {
-            if (response.length > 0) {
-              var obj = JSON.parse(response);
-              marquee(obj.createUserImage, obj.message);
-            }
-          },
-        });
+        setMarquee();
       }, 20000);
     });
 
@@ -96,6 +87,22 @@
         }, error: function() {
           console.log("ajax error! ajaxCount: " + ++ajaxErrorCount);
           setImage();
+        }
+      });
+    }
+
+    function setMarquee() {
+      $.ajax({
+        type: "get",
+        url: "https://www.vance-susan.life/getMarquee",
+        success: function (response) {
+          if (response.length > 0) {
+            var obj = JSON.parse(response);
+            marquee(obj.createUserImage, obj.message);
+          }
+        }, error: function() {
+          console.log("setMarquee ajax error!");
+          setMarquee();
         }
       });
     }
