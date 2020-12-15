@@ -22,7 +22,6 @@ html, body {
     visibility: hidden;
 }
 
-
 #main-table {
     width: 80vw;
 }
@@ -85,4 +84,18 @@ td {
 #user table {
     width: 100%;
     table-layout: fixed;
+}
+
+body {
+    background: url(../bg.jpg) no-repeat fixed;
+    background-position: bottom 0px right 0px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+img {
+    background: #fff;
+    background-clip: padding-box;
 }
